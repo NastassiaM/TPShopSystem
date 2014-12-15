@@ -1,13 +1,15 @@
-*.txt
-schema/db_model.mwb.bak
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
 # IDE specific files #
 .idea/*
 */.idea/*
 *.iml
 *.ipr
-target/*
-*/target/*
-# Package Files #
-*.jar
-*.war
-*.ear
