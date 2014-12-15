@@ -29,7 +29,10 @@ public class LoginController
                 }
                 case SELLER:
                 {
-                    JOptionPane.showMessageDialog(null, "Seller", "LoginController", JOptionPane.OK_OPTION);
+                    //JOptionPane.showMessageDialog(null, "Seller", "LoginController", JOptionPane.OK_OPTION);
+                    OrderForm orderForm = new OrderForm();
+                    orderForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    orderForm.setVisible(true);
                     break;
                 }
                 case MANAGER:

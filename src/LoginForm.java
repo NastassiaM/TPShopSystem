@@ -21,7 +21,9 @@ public class LoginForm extends JFrame
         this.setTitle("Login");
         this.setSize(400, 200);
         this.setLocationRelativeTo(null);
-        this.setLayout(new GridLayout(3, 1));
+
+        Container c = this.getContentPane();
+        c.setLayout(new GridLayout(3, 1));
 
         JLabel labelUser = new JLabel();
         labelUser.setText("Username:");
@@ -31,7 +33,7 @@ public class LoginForm extends JFrame
         userName = new JTextField(20);
         userNamePanel.add(labelUser);
         userNamePanel.add(userName);
-        this.add(userNamePanel);
+        c.add(userNamePanel);
 
         JLabel labelPassword = new JLabel();
         labelPassword.setText("Password:");
@@ -41,7 +43,7 @@ public class LoginForm extends JFrame
         userPassword = new JTextField(20);
         userPasswordPanel.add(labelPassword);
         userPasswordPanel.add(userPassword);
-        this.add(userPasswordPanel);
+        c.add(userPasswordPanel);
 
         loginController = new LoginController();
 
@@ -56,6 +58,6 @@ public class LoginForm extends JFrame
             }
         });
         okButtonPanel.add(okButton);
-        this.add(okButtonPanel);
+        c.add(okButtonPanel);
     }
 }
