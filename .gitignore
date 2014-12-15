@@ -1,0 +1,13 @@
+*.txt
+schema/db_model.mwb.bak
+# IDE specific files #
+.idea/*
+*/.idea/*
+*.iml
+*.ipr
+target/*
+*/target/*
+# Package Files #
+*.jar
+*.war
+*.ear
