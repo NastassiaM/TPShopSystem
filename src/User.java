@@ -31,6 +31,22 @@ public class User implements Comparable<User>
     }
 
 
+    public User(String login, String password, String position)
+    {
+        this.login = login;
+        this.password = password;
+        if (Position.CLERK.toString().equalsIgnoreCase(position)) {
+            this.position = Position.CLERK;
+        }
+        if (Position.SELLER.toString().equalsIgnoreCase(position)) {
+            this.position = Position.SELLER;
+        }
+        if (Position.MANAGER.toString().equalsIgnoreCase(position)) {
+            this.position = Position.MANAGER;
+        }
+    }
+
+
     public String getLogin()
     {
         return login;

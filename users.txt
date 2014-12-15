@@ -1,0 +1,3 @@
+Mike qwerty CLERK
+Paul 123456 SELLER
+Travis qwerty123456 manager

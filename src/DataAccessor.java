@@ -1,4 +1,9 @@
+import javax.swing.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 
 /**
  * Created by Nastassia on 14.12.2014.
@@ -11,12 +16,23 @@ public class DataAccessor
     {
         users = new ArrayList<User>();
 
-        User user1 = new User("Mike", "qwerty", Position.CLERK);
-        users.add(user1);
-        User user2 = new User("Paul", "qwerty123", Position.SELLER);
-        users.add(user2);
-        User user3 = new User("John", "qwerty123456", Position.MANAGER);
-        users.add(user3);
+        try {
+            Scanner sc = new Scanner (new File("users.txt"));
+            while(sc.hasNextLine()){
+                String str = sc.nextLine();
+                StringTokenizer strtok = new StringTokenizer(str);
+                int k = strtok.countTokens();
+                String userName = strtok.nextToken();
+                String password = strtok.nextToken();
+                String position = strtok.nextToken();
+
+                users.add(new User(userName, password, position));
+            }
+            sc.close();
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "File not found", "Error", JOptionPane.OK_OPTION);
+        }
+
     }
 
     public boolean checkUser(User user)

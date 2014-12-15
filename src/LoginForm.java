@@ -19,24 +19,34 @@ public class LoginForm extends JFrame
         super();
 
         this.setTitle("Login");
-        this.setSize(500, 400);
+        this.setSize(400, 200);
         this.setLocationRelativeTo(null);
-        this.setLayout(new GridLayout(3, 2));
+        this.setLayout(new GridLayout(3, 1));
 
         JLabel labelUser = new JLabel();
-        labelUser.setText("Username");
-        this.add(labelUser);
-        userName = new JTextField();
-        this.add(userName);
+        labelUser.setText("Username:");
+        labelUser.setHorizontalAlignment(JLabel.CENTER);
+        labelUser.setVerticalAlignment(JLabel.TOP);
+        JPanel userNamePanel = new JPanel();
+        userName = new JTextField(20);
+        userNamePanel.add(labelUser);
+        userNamePanel.add(userName);
+        this.add(userNamePanel);
+
         JLabel labelPassword = new JLabel();
-        labelPassword.setText("Password");
-        this.add(labelPassword);
-        userPassword = new JTextField();
-        this.add(userPassword);
-        JPanel spacePanel = new JPanel();
-        this.add(spacePanel);
+        labelPassword.setText("Password:");
+        labelPassword.setHorizontalAlignment(JLabel.CENTER);
+        labelPassword.setVerticalAlignment(JLabel.TOP);
+        JPanel userPasswordPanel = new JPanel();
+        userPassword = new JTextField(20);
+        userPasswordPanel.add(labelPassword);
+        userPasswordPanel.add(userPassword);
+        this.add(userPasswordPanel);
+
         loginController = new LoginController();
-        okButton = new JButton("OK");
+
+        JPanel okButtonPanel = new JPanel();
+        okButton = new JButton("Log In");
         okButton.addActionListener(new ActionListener()
         {
             @Override
@@ -45,6 +55,7 @@ public class LoginForm extends JFrame
                 loginController.doLogin(userName.getText(), userPassword.getText());
             }
         });
-        this.add(okButton);
+        okButtonPanel.add(okButton);
+        this.add(okButtonPanel);
     }
 }
