@@ -2,50 +2,47 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
 
 /**
  * Created by Nastassia on 16.12.2014.
  */
-public class OrderForm extends JFrame implements ItemListener {
-
-    JPanel cards; //a panel that uses CardLayout
-    final static String BUTTONPANEL = "Card with JButtons";
-    final static String TEXTPANEL = "Card with JTextField";
+public class OrderForm extends JFrame {
 
     public OrderForm() {
         super();
 
-        //Put the JComboBox in a JPanel to get a nicer look.
-        JPanel comboBoxPane = new JPanel(); //use FlowLayout
-        String comboBoxItems[] = { BUTTONPANEL, TEXTPANEL };
-        JComboBox cb = new JComboBox(comboBoxItems);
-        cb.setEditable(false);
-        cb.addItemListener(this);
-        comboBoxPane.add(cb);
+        this.setSize(400, 300);
+        this.setTitle("Order form");
+        this.setLocationRelativeTo(null);
 
-        //Create the "cards".
-        JPanel card1 = new JPanel();
-        card1.add(new JButton("Button 1"));
-        card1.add(new JButton("Button 2"));
-        card1.add(new JButton("Button 3"));
+        JTabbedPane tabbedPane = new JTabbedPane();
 
-        JPanel card2 = new JPanel();
-        card2.add(new JTextField("TextField", 20));
+        JComponent panel1 = makeTextPanel("Panel #1");
+        tabbedPane.addTab ("Demands", panel1);
+        tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 
-        //Create the panel that contains the "cards".
-        cards = new JPanel(new CardLayout());
-        cards.add(card1, BUTTONPANEL);
-        cards.add(card2, TEXTPANEL);
+        JComponent panel2 = makeTextPanel("Panel #2");
+        tabbedPane.addTab("Orders", panel2);
+        tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
 
-        Container c = this.getContentPane();
-        c.add(comboBoxPane, BorderLayout.PAGE_START);
-        c.add(cards, BorderLayout.CENTER);
+
+        //Add the tabbed pane to this panel.
+        add(tabbedPane);
+
+        //The following line enables to use scrolling tabs.
+        tabbedPane.setTabLayoutPolicy(JTabbedPane.WRAP_TAB_LAYOUT);
 
     }
 
 
-    public void itemStateChanged(ItemEvent evt) {
-        CardLayout cl = (CardLayout)(cards.getLayout());
-        cl.show(cards, (String)evt.getItem());
+    protected JComponent makeTextPanel(String text) {
+        JPanel panel = new JPanel(false);
+        JLabel filler = new JLabel(text);
+        filler.setHorizontalAlignment(JLabel.CENTER);
+        panel.setLayout(new GridLayout(1, 1));
+        panel.add(filler);
+        return panel;
     }
+
 }
