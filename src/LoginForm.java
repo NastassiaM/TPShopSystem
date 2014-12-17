@@ -6,21 +6,20 @@ import java.awt.event.ActionListener;
 /**
  * Created by Nastassia on 14.12.2014.
  */
-public class LoginForm extends JFrame
-{
+public class LoginForm extends JFrame{
     JTextField userName;
     JTextField userPassword;
     JButton okButton;
     LoginController loginController;
 
 
-    public LoginForm() throws HeadlessException
-    {
+    public LoginForm(LoginController loginCtrl) throws HeadlessException{
         super();
 
         this.setTitle("Login");
         this.setSize(400, 200);
         this.setLocationRelativeTo(null);
+        loginController = loginCtrl;
 
         Container c = this.getContentPane();
         c.setLayout(new GridLayout(3, 1));
@@ -44,8 +43,6 @@ public class LoginForm extends JFrame
         userPasswordPanel.add(labelPassword);
         userPasswordPanel.add(userPassword);
         c.add(userPasswordPanel);
-
-        loginController = new LoginController();
 
         JPanel okButtonPanel = new JPanel();
         okButton = new JButton("Log In");
