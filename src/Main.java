@@ -16,8 +16,8 @@ public class Main {
     void loginResponse(Position position) {
         switch (position) {
             case CLERK: {
-                JOptionPane.showMessageDialog(null, "Clerk", "LoginController", JOptionPane.OK_OPTION);
-                orderController.showForm();
+                //JOptionPane.showMessageDialog(null, "Clerk", "LoginController", JOptionPane.OK_OPTION);
+                orderController.requestForCreate();
                 break;
             }
             case SELLER: {
@@ -26,8 +26,8 @@ public class Main {
                 break;
             }
             case MANAGER: {
-                JOptionPane.showMessageDialog(null, "Manager", "LoginController", JOptionPane.OK_OPTION);
-                inventoryController.showForm();
+                //JOptionPane.showMessageDialog(null, "Manager", "LoginController", JOptionPane.OK_OPTION);
+                inventoryController.requestForCreate();
                 break;
             }
             default: {

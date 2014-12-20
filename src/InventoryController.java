@@ -6,7 +6,6 @@ import javax.swing.*;
  * @created 16-���-2014 23:28:21
  */
 public class InventoryController {
-
 	public InventoryForm inventoryForm;
 	public PrinterAccessor printerAccessor;
 	public DatabaseOfGoods databaseOfGoods;
@@ -15,13 +14,7 @@ public class InventoryController {
 
     public InventoryController(Main main) {
         mainController = main;
-    }
-
-    public void showForm(){
         inventoryForm = new InventoryForm(this);
-        inventoryForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        inventoryForm.setVisible(true);
-        inventoryForm.pack();
     }
 
 	public void finalize() throws Throwable {
@@ -33,7 +26,8 @@ public class InventoryController {
 	}
 
 	public void requestForCreate(){
-
+        //catalog()
+        inventoryForm.showForm();
 	}
 
 	public void requestForPrint(){

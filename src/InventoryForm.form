@@ -16,16 +16,6 @@
         </constraints>
         <properties/>
       </component>
-      <component id="b4536" class="javax.swing.JList" binding="inventoryList">
-        <constraints>
-          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="50"/>
-          </grid>
-        </constraints>
-        <properties>
-          <model/>
-        </properties>
-      </component>
       <grid id="cd95a" layout-manager="GridBagLayout">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -110,6 +100,14 @@
         <properties>
           <text value="Inventory List"/>
         </properties>
+      </component>
+      <component id="737b1" class="javax.swing.JTable" binding="inventoryTable" custom-create="true">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="50"/>
+          </grid>
+        </constraints>
+        <properties/>
       </component>
     </children>
   </grid>

@@ -10,7 +10,7 @@ public class OrderController {
     OrderController(Main main) {
         mainController = main;
     }
-    void showForm(){
+    void requestForCreate(){
         orderForm = new OrderForm();
         orderForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         orderForm.setVisible(true);

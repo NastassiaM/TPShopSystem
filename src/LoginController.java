@@ -23,6 +23,7 @@ public class LoginController{
         User user = new User(name, password);
         if (dataAccessor.checkUser(user)){
             mainController.loginResponse(user.getPosition());
+            loginForm.dispose();
         }
         else{
             JOptionPane.showMessageDialog(null, "Doesn't exist", "LoginController", JOptionPane.OK_OPTION);
