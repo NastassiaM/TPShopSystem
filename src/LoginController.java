@@ -7,11 +7,13 @@ import java.awt.event.ActionListener;
  */
 public class LoginController {
     DataAccessor dataAccessor;
+    OrderController orderController;
     InventoryController inventoryController;
     RequestController requestController;
 
     public LoginController(){
         dataAccessor = new DataAccessor();
+        orderController = new OrderController();
         inventoryController = new InventoryController();
         requestController = new RequestController();
     }
@@ -24,13 +26,9 @@ public class LoginController {
                     requestController.requestForCreate();
                     break;
                 case SELLER:
-                    //JOptionPane.showMessageDialog(null, "Seller", "LoginController", JOptionPane.OK_OPTION);
-                    OrdersForm ordersForm = new OrdersForm();
-                    //ordersForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    //ordersForm.setVisible(true);
+                    orderController.requestForCreate();
                     break;
                 case MANAGER:
-                    //JOptionPane.showMessageDialog(null, "Manager", "LoginController", JOptionPane.OK_OPTION);
                     inventoryController.requestForCreate();
                     break;
                 default:
@@ -40,5 +38,6 @@ public class LoginController {
         } else {
             JOptionPane.showMessageDialog(null, "Doesn't exist", "LoginController", JOptionPane.OK_OPTION);
         }
+
     }
 }

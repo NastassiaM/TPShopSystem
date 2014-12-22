@@ -5,15 +5,18 @@ public class Good {
 
     private  String title;
     private  double price;
+    private  int count;
 
     public Good() {
         this.title = "";
         this.price = 0.0;
+        this.count = 0;
     }
 
     public Good(String title, double price) {
         this.title = title;
         this.price = price;
+        this.count = 0;
     }
 
     public String getTitle() {
@@ -30,5 +33,19 @@ public class Good {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Good anotherGood = (Good)obj;
+        return ((title.equalsIgnoreCase(anotherGood.getTitle())) && (price == anotherGood.price));
     }
 }

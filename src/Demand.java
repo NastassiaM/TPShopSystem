@@ -7,7 +7,8 @@ public class Demand extends ArrayList<Good> {
 
     private String customerName;
     private String customerTelephone;
-    private boolean isAvailible;
+    private boolean isAvailable;
+    DataAccessor dataAccessor;
 
 
     public Demand() {
@@ -15,6 +16,27 @@ public class Demand extends ArrayList<Good> {
 
         customerName = "";
         customerTelephone = "";
-        isAvailible = false;
+        isAvailable = false;
+
+        dataAccessor = new DataAccessor();
+    }
+
+    public  void elementWasAddedToInventory(Good item){
+        this.isAvailable = this.isAvailable();
+    }
+
+    public boolean isAvailable() {
+        boolean t = true;
+        for (Good good: this) {
+            if (!dataAccessor.inventoryListContains(good))
+            {
+                t = false;
+            }
+        }
+        return t;
+    }
+
+    public void setAvailable(boolean isAvailible) {
+        this.isAvailable = isAvailible;
     }
 }

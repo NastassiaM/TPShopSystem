@@ -8,4 +8,12 @@ public class DemandList extends ArrayList<Demand> {
     public DemandList() {
         super();
     }
+
+    public void itemWasAdded(Good item)
+    {
+        for (Demand demand: this)
+        {
+            demand.elementWasAddedToInventory(item);
+        }
+    }
 }

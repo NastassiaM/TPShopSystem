@@ -1,0 +1,5 @@
+Chair "Romashka" 20.0
+Table "Sunflower" 30.0
+Wardrobe "Genius" 50.0
+Door "Close me" 40.0
+Door "Never mind" 45.0

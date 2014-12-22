@@ -14,12 +14,27 @@ public class OrdersForm extends JFrame {
     private JPanel Test;
     private JPanel qwe;
 
-    public static void main(String[] args) {
+    OrderController orderController;
+
+   /* public static void main(String[] args) {
         JFrame frame = new JFrame("OrdersForm");
         frame.setContentPane(new OrdersForm().Test);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+    }*/
+   public OrdersForm(OrderController orderControl) {
+       setContentPane(tabbedPane1);
+
+       orderController = orderControl;
+
+       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       pack();
+       setBounds(100, 50, 500, 650);
+   }
+
+    public void showForm(){
+        setVisible(true);
     }
 
 }

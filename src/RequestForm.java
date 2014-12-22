@@ -34,8 +34,8 @@ public class RequestForm extends JFrame{
     private void initLists() {
         catalogList.setModel(new DefaultListModel<String>());
         DefaultListModel<String> catalogListModel = (DefaultListModel<String>)(catalogList.getModel());
-        for(String good: catalogOfGoods){
-            catalogListModel.addElement(good);
+        for(Good good: catalogOfGoods){
+            catalogListModel.addElement(good.getTitle());
         }
     }
 

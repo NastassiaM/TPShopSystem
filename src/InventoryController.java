@@ -6,11 +6,14 @@
 public class InventoryController {
 	public InventoryForm inventoryForm;
 	public PrinterAccessor printerAccessor;
-	//public DatabaseOfGoods databaseOfGoods;
+	public DataAccessor dataAccessor;
 	public InventoryList inventoryList;
     Main mainController;
 
     public InventoryController() {
+        //mainController = main;
+		dataAccessor = new DataAccessor();
+		inventoryList = DataAccessor.inventoryList;
         inventoryForm = new InventoryForm(this);
     }
 

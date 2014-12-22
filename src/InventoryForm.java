@@ -35,8 +35,8 @@ public class InventoryForm extends JFrame{
     private void initLists() {
         catalogList.setModel(new DefaultListModel<String>());
         DefaultListModel<String> catalogListModel = (DefaultListModel<String>)(catalogList.getModel());
-        for(String good: catalogOfGoods){
-            catalogListModel.addElement(good);
+        for(Good good: catalogOfGoods){
+            catalogListModel.addElement(good.getTitle());
         }
     }
 
@@ -46,7 +46,7 @@ public class InventoryForm extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 DefaultTableModel modelInventoryTable = (DefaultTableModel)(inventoryTable.getModel());
                 DefaultListModel<String> modelCatalogList = (DefaultListModel<String>)(catalogList.getModel());
-                modelInventoryTable.addRow(new String[]{catalogList.getSelectedValue(), "0"});
+                modelInventoryTable.addRow(new String[]{catalogList.getSelectedValue(), "1"});
                 int i = catalogList.getSelectedIndex();
                 if(i >= 0)
                     modelCatalogList.removeElementAt(i);
