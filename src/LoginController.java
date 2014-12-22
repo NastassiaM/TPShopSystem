@@ -8,10 +8,12 @@ import java.awt.event.ActionListener;
 public class LoginController
 {
     DataAccessor dataAccessor;
+    InventoryController inventoryController;
 
     public LoginController()
     {
         dataAccessor = new DataAccessor();
+        inventoryController = new InventoryController();
     }
 
 
@@ -30,14 +32,15 @@ public class LoginController
                 case SELLER:
                 {
                     //JOptionPane.showMessageDialog(null, "Seller", "LoginController", JOptionPane.OK_OPTION);
-                    OrderForm orderForm = new OrderForm();
-                    orderForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    orderForm.setVisible(true);
+                    OrdersForm ordersForm = new OrdersForm();
+                    //ordersForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    //ordersForm.setVisible(true);
                     break;
                 }
                 case MANAGER:
                 {
-                    JOptionPane.showMessageDialog(null, "Manager", "LoginController", JOptionPane.OK_OPTION);
+                    //JOptionPane.showMessageDialog(null, "Manager", "LoginController", JOptionPane.OK_OPTION);
+                    inventoryController.requestForCreate();
                     break;
                 }
                 default:
