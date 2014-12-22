@@ -11,6 +11,8 @@ public class LoginController {
     InventoryController inventoryController;
     RequestController requestController;
 
+    LoginForm loginForm;
+
     public LoginController(){
         dataAccessor = new DataAccessor();
         orderController = new OrderController();
@@ -38,6 +40,10 @@ public class LoginController {
         } else {
             JOptionPane.showMessageDialog(null, "Doesn't exist", "LoginController", JOptionPane.OK_OPTION);
         }
+        loginForm.dispose();
+    }
 
+    public void showForm() {
+        loginForm = new LoginForm();
     }
 }

@@ -37,20 +37,32 @@ public class RequestForm extends JFrame{
         for(Good good: catalogOfGoods){
             catalogListModel.addElement(good.getTitle());
         }
+        catalogList.setSelectedIndex(0);
     }
 
     private void initListeners() {
         rightArrow.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DefaultTableModel modelInventoryTable = (DefaultTableModel)(goodsTable.getModel());
-                DefaultListModel<String> modelCatalogList = (DefaultListModel<String>)(catalogList.getModel());
-                modelInventoryTable.addRow(new String[]{catalogList.getSelectedValue(), "0"});
-                int i = catalogList.getSelectedIndex();
-                if(i >= 0)
-                    modelCatalogList.removeElementAt(i);
-                i = modelInventoryTable.getRowCount()-1;
-                if(i >= 0)
+                DefaultTableModel modelInventoryTable = (DefaultTableModel) (goodsTable.getModel());
+                boolean hasInInventList = false;
+                int rowIndex = -1,
+                        countOfGood = -1;
+                for (int i = 0; i < modelInventoryTable.getRowCount(); i++) {
+                    if (modelInventoryTable.getValueAt(i, 0).equals(catalogList.getSelectedValue())) {
+                        hasInInventList = true;
+                        rowIndex = i;
+                        Object goodOfIL = modelInventoryTable.getValueAt(i, 1);
+                        countOfGood = Integer.parseInt(goodOfIL.toString());
+                    }
+                }
+                if (!hasInInventList)
+                    modelInventoryTable.addRow(new String[]{catalogList.getSelectedValue(), "0"});
+                else
+                    modelInventoryTable.setValueAt(countOfGood + 1, rowIndex, 1);
+
+                int i = modelInventoryTable.getRowCount() - 1;
+                if (i >= 0)
                     goodsTable.setRowSelectionInterval(i, i);
             }
         });
@@ -59,17 +71,10 @@ public class RequestForm extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 DefaultTableModel modelInventoryTable = (DefaultTableModel) (goodsTable.getModel());
-                DefaultListModel<String> modelCatalogList = (DefaultListModel<String>) (catalogList.getModel());
                 int i = goodsTable.getSelectedRow();
-
-                if (i >= 0) {
-                    modelCatalogList.addElement((String) modelInventoryTable.getValueAt(i, 0));
+                if (i >= 0){
                     modelInventoryTable.removeRow(i);
                 }
-                i = modelCatalogList.size() - 1;
-
-                if (i >= 0)
-                    catalogList.setSelectedIndex(i);
             }
         });
     }

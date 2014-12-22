@@ -38,6 +38,7 @@ public class InventoryForm extends JFrame{
         for(Good good: catalogOfGoods){
             catalogListModel.addElement(good.getTitle());
         }
+        catalogList.setSelectedIndex(0);
     }
 
     private void initListeners() {
@@ -45,14 +46,25 @@ public class InventoryForm extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 DefaultTableModel modelInventoryTable = (DefaultTableModel)(inventoryTable.getModel());
-                DefaultListModel<String> modelCatalogList = (DefaultListModel<String>)(catalogList.getModel());
-                modelInventoryTable.addRow(new String[]{catalogList.getSelectedValue(), "1"});
-                int i = catalogList.getSelectedIndex();
+                boolean hasInInventList = false;
+                int rowIndex = -1,
+                    countOfGood = -1;
+                for(int i = 0; i < modelInventoryTable.getRowCount(); i++){
+                    if(modelInventoryTable.getValueAt(i,0).equals(catalogList.getSelectedValue())){
+                        hasInInventList = true;
+                        rowIndex = i;
+                        Object goodOfIL = modelInventoryTable.getValueAt(i,1);
+                        countOfGood = Integer.parseInt(goodOfIL.toString());
+                    }
+                }
+                if(!hasInInventList)
+                    modelInventoryTable.addRow(new String[]{catalogList.getSelectedValue(), "0"});
+                else
+                    modelInventoryTable.setValueAt(countOfGood+1, rowIndex, 1);
+
+                int i = modelInventoryTable.getRowCount()-1;
                 if(i >= 0)
-                    modelCatalogList.removeElementAt(i);
-                i = modelInventoryTable.getRowCount()-1;
-                if(i >= 0)
-                    inventoryTable.setRowSelectionInterval(i, i);
+                   inventoryTable.setRowSelectionInterval(i, i);
             }
         });
 
@@ -60,15 +72,10 @@ public class InventoryForm extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 DefaultTableModel modelInventoryTable = (DefaultTableModel) (inventoryTable.getModel());
-                DefaultListModel<String> modelCatalogList = (DefaultListModel<String>) (catalogList.getModel());
                 int i = inventoryTable.getSelectedRow();
                 if (i >= 0){
-                    modelCatalogList.addElement((String)modelInventoryTable.getValueAt(i, 0));
                     modelInventoryTable.removeRow(i);
                 }
-                i = modelCatalogList.size() - 1;
-                if (i >= 0)
-                    catalogList.setSelectedIndex(i);
             }
         });
     }
