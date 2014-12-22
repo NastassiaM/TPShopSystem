@@ -11,16 +11,13 @@ public class InventoryController {
     Main mainController;
 
     public InventoryController() {
-        //mainController = main;
         inventoryForm = new InventoryForm(this);
     }
 
 	public void finalize() throws Throwable {
-
 	}
 
 	public void createDocumentForPrint(){
-
 	}
 
 	public void requestForCreate(){

@@ -62,9 +62,10 @@ public class InventoryForm extends JFrame{
                 DefaultTableModel modelInventoryTable = (DefaultTableModel) (inventoryTable.getModel());
                 DefaultListModel<String> modelCatalogList = (DefaultListModel<String>) (catalogList.getModel());
                 int i = inventoryTable.getSelectedRow();
-                modelCatalogList.addElement((String)modelInventoryTable.getValueAt(i, 0));
-                if (i >= 0)
+                if (i >= 0){
+                    modelCatalogList.addElement((String)modelInventoryTable.getValueAt(i, 0));
                     modelInventoryTable.removeRow(i);
+                }
                 i = modelCatalogList.size() - 1;
                 if (i >= 0)
                     catalogList.setSelectedIndex(i);

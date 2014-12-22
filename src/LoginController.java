@@ -8,19 +8,20 @@ import java.awt.event.ActionListener;
 public class LoginController {
     DataAccessor dataAccessor;
     InventoryController inventoryController;
+    RequestController requestController;
 
     public LoginController(){
         dataAccessor = new DataAccessor();
         inventoryController = new InventoryController();
+        requestController = new RequestController();
     }
-
 
     public void doLogin(String name, String password){
         User user = new User(name, password);
         if (dataAccessor.checkUser(user)){
             switch (user.getPosition()) {
                 case CLERK:
-                    JOptionPane.showMessageDialog(null, "Clerk", "LoginController", JOptionPane.OK_OPTION);
+                    requestController.requestForCreate();
                     break;
                 case SELLER:
                     //JOptionPane.showMessageDialog(null, "Seller", "LoginController", JOptionPane.OK_OPTION);
