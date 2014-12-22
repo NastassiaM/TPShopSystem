@@ -13,7 +13,7 @@ public class LoginForm extends JFrame {
     LoginController loginController;
 
 
-    public LoginForm() throws HeadlessException {
+    public LoginForm(LoginController loginCtrl) throws HeadlessException {
         super();
 
         this.setTitle("Login");
@@ -43,7 +43,7 @@ public class LoginForm extends JFrame {
         userPasswordPanel.add(userPassword);
         c.add(userPasswordPanel);
 
-        loginController = new LoginController();
+        loginController = loginCtrl;
 
         JPanel okButtonPanel = new JPanel();
         okButton = new JButton("Log In");

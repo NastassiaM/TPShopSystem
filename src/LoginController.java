@@ -44,6 +44,6 @@ public class LoginController {
     }
 
     public void showForm() {
-        loginForm = new LoginForm();
+        loginForm = new LoginForm(this);
     }
 }
