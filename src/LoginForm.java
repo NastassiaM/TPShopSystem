@@ -6,16 +6,14 @@ import java.awt.event.ActionListener;
 /**
  * Created by Nastassia on 14.12.2014.
  */
-public class LoginForm extends JFrame
-{
+public class LoginForm extends JFrame {
     JTextField userName;
     JTextField userPassword;
     JButton okButton;
     LoginController loginController;
 
 
-    public LoginForm() throws HeadlessException
-    {
+    public LoginForm() throws HeadlessException {
         super();
 
         this.setTitle("Login");
@@ -59,5 +57,8 @@ public class LoginForm extends JFrame
         });
         okButtonPanel.add(okButton);
         c.add(okButtonPanel);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
     }
 }
