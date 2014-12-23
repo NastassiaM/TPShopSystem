@@ -78,6 +78,13 @@ public class InventoryForm extends JFrame{
                 }
             }
         });
+
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
     public void showForm(){

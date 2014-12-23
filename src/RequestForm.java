@@ -12,10 +12,16 @@ public class RequestForm extends JFrame{
     private JTextField textField2;
     private JButton saveButton;
     private JList<String> catalogList;
-    private JPanel mainPanel;
+    private JPanel requestTab;
     private JButton rightArrow;
     private JButton leftArrow;
     private JTable goodsTable;
+    private JTabbedPane tabbedPane1;
+    private JPanel mainPanel;
+    private JList requestsList;
+    private JButton editButton;
+    private JButton deleteButton;
+    private JPanel listOfRequestTab;
     private CatalogOfGoods catalogOfGoods;
 
     public RequestForm(RequestController requestCtrl) {
@@ -31,9 +37,13 @@ public class RequestForm extends JFrame{
         setBounds(100, 50, 500, 650);
     }
 
+
     private void initLists() {
         catalogList.setModel(new DefaultListModel<String>());
         DefaultListModel<String> catalogListModel = (DefaultListModel<String>)(catalogList.getModel());
+
+        requestsList.setModel(new DefaultListModel<String>());
+        DefaultListModel<String> requestsListModel = (DefaultListModel<String>)(requestsList.getModel());
         for(Good good: catalogOfGoods){
             catalogListModel.addElement(good.getTitle());
         }
@@ -75,6 +85,13 @@ public class RequestForm extends JFrame{
                 if (i >= 0){
                     modelInventoryTable.removeRow(i);
                 }
+            }
+        });
+
+        editButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                requestsList.getSelectedValue();
             }
         });
     }
