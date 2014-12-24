@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by Viktoria on 22.12.2014.
  */
-public class RequestForm extends JFrame{
+public class DemandForm extends JFrame{
     private RequestController requestController;
     private JTextField textField1;
     private JTextField textField2;
@@ -24,7 +24,7 @@ public class RequestForm extends JFrame{
     private JPanel listOfRequestTab;
     private CatalogOfGoods catalogOfGoods;
 
-    public RequestForm(RequestController requestCtrl) {
+    public DemandForm(RequestController requestCtrl) {
         setContentPane(mainPanel);
         catalogOfGoods = new CatalogOfGoods();
         initLists();

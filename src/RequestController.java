@@ -2,10 +2,10 @@
  * Created by Viktoria on 22.12.2014.
  */
 public class RequestController {
-    private RequestForm requestForm;
+    private DemandForm demandForm;
 
     public RequestController() {
-        requestForm = new RequestForm(this);
+        demandForm = new DemandForm(this);
     }
 
     public void finalize() throws Throwable {
@@ -13,6 +13,6 @@ public class RequestController {
 
     public void requestForCreate(){
         //catalog()
-        requestForm.showForm();
+        demandForm.showForm();
     }
 }

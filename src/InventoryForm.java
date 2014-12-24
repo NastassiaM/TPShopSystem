@@ -26,8 +26,6 @@ public class InventoryForm extends JFrame{
         inventoryController = inventoryCtrl;
         initListeners();
 
-        initInventoryTable();
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setBounds(100, 50, 500, 650);
@@ -69,6 +67,8 @@ public class InventoryForm extends JFrame{
                     modelInventoryTable.addRow(new String[]{catalogList.getSelectedValue(), "1"});
                 else
                     modelInventoryTable.setValueAt(countOfGood+1, rowIndex, 1);
+
+                modelInventoryTable.setValueAt(DataAccessor.inventoryList.indexOf(""), rowIndex, 2);
 
                 int i = modelInventoryTable.getRowCount()-1;
                 if(i >= 0)
@@ -115,7 +115,7 @@ public class InventoryForm extends JFrame{
     }
 
     public void createUIComponents(){
-        String[][] emptyData = new String[0][2];
-        inventoryTable = new JTable(new DefaultTableModel(emptyData ,new String[]{"Column1", "Column2"}));
+        String[][] emptyData = new String[0][3];
+        inventoryTable = new JTable(new DefaultTableModel(emptyData ,new String[]{"Column1", "Column2", "Column3"}));
     }
 }

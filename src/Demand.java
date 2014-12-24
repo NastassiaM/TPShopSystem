@@ -21,6 +21,16 @@ public class Demand extends ArrayList<Good> {
         dataAccessor = new DataAccessor();
     }
 
+    public Demand(String name, String phone) {
+        super();
+
+        customerName = "";
+        customerTelephone = "";
+        isAvailable = false;
+
+        dataAccessor = new DataAccessor();
+    }
+
     public  void elementWasAddedToInventory(Good item){
         this.isAvailable = this.isAvailable();
     }

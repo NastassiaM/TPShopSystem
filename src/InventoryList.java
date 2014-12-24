@@ -7,4 +7,7 @@ public class InventoryList extends ArrayList<Good>{
     InventoryList(){
         super();
     }
+    public getGood(){
+
+    }
 }
