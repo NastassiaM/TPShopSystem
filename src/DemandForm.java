@@ -135,7 +135,9 @@ public class DemandForm extends JFrame{
         editButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                demandController.requestForEdit((String)requestsList.getSelectedValue());
+                String selectedRequest = (String) requestsList.getSelectedValue();
+                if(selectedRequest != null)
+                    demandController.requestForEdit(selectedRequest);
             }
         });
     }
@@ -153,6 +155,7 @@ public class DemandForm extends JFrame{
         initListOfGoods(demand);
         textField1.setText(demand.getCustomerName());
         textField2.setText(demand.getCustomerTelephone());
+        tabbedPane1.setSelectedComponent(requestTab);
     }
 
     private void initListOfGoods(Demand demand) {
