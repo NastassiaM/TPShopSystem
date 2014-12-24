@@ -13,6 +13,7 @@ public class OrdersForm extends JFrame {
     private JButton exitButton;
     private JPanel Test;
     private JPanel qwe;
+    private JButton exitButtonOrders;
 
     OrderController orderController;
 

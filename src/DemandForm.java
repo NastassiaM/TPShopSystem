@@ -50,6 +50,7 @@ public class DemandForm extends JFrame{
         catalogList.setSelectedIndex(0);
     }
 
+
     private void initListeners() {
         rightArrow.addActionListener(new ActionListener() {
             @Override
