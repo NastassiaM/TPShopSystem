@@ -70,7 +70,7 @@ public class DataAccessor
                 Double price = Double.valueOf(strtok.nextToken());
                 Integer count = Integer.valueOf(strtok.nextToken());
 
-                inventoryList.add(new Good(name, price, count));
+                inventoryList.add(new Good(name, count, price));
             }
             sc.close();
         } catch (FileNotFoundException e) {
@@ -122,7 +122,7 @@ public class DataAccessor
         return inventoryList.contains(good);
     }
 
-    public void saveInventoryList(InventoryList invList){
+    public boolean saveInventoryList(InventoryList invList){
         inventoryList = invList;
 
         try {
@@ -132,9 +132,11 @@ public class DataAccessor
             }
             fw.close();
         } catch (IOException e) {
-            JOptionPane.showMessageDialog (null, "Error writing in file", "Error", JOptionPane.INFORMATION_MESSAGE);
+            //JOptionPane.showMessageDialog (null, "Error writing in file", "Error", JOptionPane.INFORMATION_MESSAGE);
+            return false;
         }
 
         catalogOfGoods.updateCatalog(invList);
+        return true;
     }
 }

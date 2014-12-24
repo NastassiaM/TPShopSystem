@@ -36,12 +36,9 @@ public class InventoryController {
 		return false;
 	}
 
-	public boolean responseForSave(){
-		return false;
-	}
 
-	public void saveInventoryList(){
-
+	public boolean saveInventoryList(InventoryList invList){
+        return dataAccessor.saveInventoryList(invList);
 	}
 
 }

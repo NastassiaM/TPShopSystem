@@ -38,10 +38,10 @@ public class CatalogOfGoods extends ArrayList<Good> {
     }
 
 	public void updateCatalog(InventoryList inventoryList){
-        for (Good good: inventoryList)
-        {
-            int i = this.indexOf(good);
-            this.get(i).setPrice(good.getPrice());
+        for (Good good: inventoryList){
+            int i = indexOf(good);
+            if(i >= 0)
+                get(i).setPrice(good.getPrice());
         }
     }
 

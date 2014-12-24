@@ -106,9 +106,14 @@ public class InventoryForm extends JFrame{
                 for(int i = 0; i < modelInventoryTable.getRowCount(); i++){
                     String name = modelInventoryTable.getValueAt(i,0).toString();
                     int count = Integer.valueOf(modelInventoryTable.getValueAt(i,1).toString());
-                    list.add(new Good(name, count));
+                    double price = Double.valueOf(modelInventoryTable.getValueAt(i,2).toString());
+                    list.add(new Good(name, count, price));
                 }
-                inventoryController.dataAccessor.saveInventoryList(list);
+                if(!inventoryController.saveInventoryList(list)){
+                    JOptionPane.showMessageDialog(null, "Not save", "Error", JOptionPane.OK_OPTION);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Save succeed", "Success save", JOptionPane.OK_OPTION);
+                }
             }
         });
     }
