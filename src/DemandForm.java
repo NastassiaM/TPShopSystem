@@ -113,11 +113,8 @@ public class DemandForm extends JFrame{
                 for(int i = 0; i < modelInventoryTable.getRowCount(); i++){
                     String name = modelInventoryTable.getValueAt(i,0).toString();
                     int count = Integer.valueOf(modelInventoryTable.getValueAt(i, 1).toString());
-                    //double price = Double.valueOf(modelInventoryTable.getValueAt(i,2).toString());
-                    demand.add(new Good(name, count, 0.0));
+                    demand.add(new Good(name, count));
                 }
-                //demand.setCustomerName(textField1.getText());
-                //demand.setCustomerTelephone(textField2.getText());
                 DataAccessor.demandList.add(demand);
                 DataAccessor.demandList.writeToFile();
 
@@ -128,6 +125,20 @@ public class DemandForm extends JFrame{
                 textField2.setText("");
                 for (int i = modelInventoryTable.getRowCount() - 1; i >= 0; i --){
                     modelInventoryTable.removeRow(i);
+                }
+
+            }
+        });
+
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String id = (String) requestsList.getSelectedValue();
+                DefaultListModel<String> requestsListModel = (DefaultListModel<String>) requestsList.getModel();
+                requestsListModel.removeElementAt(requestsList.getSelectedIndex());
+
+                if(demandController.requestForDelete(id)){
+                    JOptionPane.showMessageDialog(null, "Delete succeed", "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         });

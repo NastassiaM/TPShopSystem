@@ -32,7 +32,7 @@ public class DemandList extends ArrayList<Demand> {
         return null;
     }
 
-    public void writeToFile(){
+    public boolean writeToFile(){
         try {
             FileWriter fw = new FileWriter("demandList.txt");
             for (Demand demand: this){
@@ -41,7 +41,9 @@ public class DemandList extends ArrayList<Demand> {
             fw.close();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Error writing in file", "Error", JOptionPane.INFORMATION_MESSAGE);
+            return false;
         }
+        return true;
     }
 
     public void initFromFile(){

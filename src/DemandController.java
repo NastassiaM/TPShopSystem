@@ -1,3 +1,5 @@
+import javax.xml.crypto.Data;
+
 /**
  * Created by Viktoria on 22.12.2014.
  */
@@ -23,5 +25,11 @@ public class DemandController {
     public void requestForEdit(String id) {
         Demand demand = getDemandByID(id);
         demandForm.showEditForm(demand);
+    }
+
+    public boolean requestForDelete(String id) {
+        Demand demand = DataAccessor.demandList.getDemand(id);
+        DataAccessor.demandList.remove(demand);
+        return DataAccessor.demandList.writeToFile();
     }
 }

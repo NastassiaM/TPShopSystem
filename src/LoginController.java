@@ -24,12 +24,15 @@ public class LoginController {
             switch (user.getPosition()) {
                 case CLERK:
                     demandController.requestForCreate();
+                    loginForm.dispose();
                     break;
                 case SELLER:
                     orderController.requestForCreate();
+                    loginForm.dispose();
                     break;
                 case MANAGER:
                     inventoryController.requestForCreate();
+                    loginForm.dispose();
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "Wrong position", "LoginController", JOptionPane.OK_OPTION);
@@ -38,7 +41,6 @@ public class LoginController {
         } else {
             JOptionPane.showMessageDialog(null, "Doesn't exist", "LoginController", JOptionPane.OK_OPTION);
         }
-        loginForm.dispose();
     }
 
     public void showForm() {
