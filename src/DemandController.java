@@ -19,4 +19,9 @@ public class DemandController {
     public Demand getDemandByID(String id){
         return DataAccessor.demandList.getDemand(id);
     }
+
+    public void requestForEdit(String id) {
+        Demand demand = getDemandByID(id);
+        demandForm.showEditForm(demand);
+    }
 }

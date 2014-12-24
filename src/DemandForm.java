@@ -122,8 +122,7 @@ public class DemandForm extends JFrame{
         editButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                requestsList.getSelectedValue();
-
+                demandController.requestForEdit((String)requestsList.getSelectedValue());
             }
         });
     }
@@ -135,5 +134,18 @@ public class DemandForm extends JFrame{
     public void createUIComponents(){
         String[][] emptyData = new String[0][2];
         goodsTable = new JTable(new DefaultTableModel(emptyData ,new String[]{"Column1", "Column2"}));
+    }
+
+    public void showEditForm(Demand demand) {
+        initListOfGoods(demand);
+        textField1.setText(demand.getCustomerName());
+        textField2.setText(demand.getCustomerTelephone());
+    }
+
+    private void initListOfGoods(Demand demand) {
+        DefaultTableModel modelOfTable = (DefaultTableModel) goodsTable.getModel();
+        for(Good good: demand){
+            modelOfTable.addRow(new String[]{good.getTitle(), String.valueOf(good.getCount()), String.valueOf(good.getPrice())});
+        }
     }
 }
