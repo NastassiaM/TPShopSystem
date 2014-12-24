@@ -24,7 +24,9 @@ public class DemandForm extends JFrame{
     private JPanel listOfRequestTab;
     private CatalogOfGoods catalogOfGoods;
 
-    public DemandForm(DemandController requestCtrl) {
+    private Demand currentDemand = null;
+
+    public DemandForm(RequestController requestCtrl) {
         setContentPane(mainPanel);
         catalogOfGoods = new CatalogOfGoods();
         initLists();
@@ -68,7 +70,7 @@ public class DemandForm extends JFrame{
                     }
                 }
                 if (!hasInInventList)
-                    modelInventoryTable.addRow(new String[]{catalogList.getSelectedValue(), "0"});
+                    modelInventoryTable.addRow(new String[]{catalogList.getSelectedValue(), "1"});
                 else
                     modelInventoryTable.setValueAt(countOfGood + 1, rowIndex, 1);
 
@@ -84,8 +86,36 @@ public class DemandForm extends JFrame{
                 DefaultTableModel modelInventoryTable = (DefaultTableModel) (goodsTable.getModel());
                 int i = goodsTable.getSelectedRow();
                 if (i >= 0){
-                    modelInventoryTable.removeRow(i);
+                    //modelInventoryTable.removeRow(i);
+                    Object goodOfIL = modelInventoryTable.getValueAt(i,1);
+                    int countOfGood = Integer.parseInt(goodOfIL.toString());
+                    if (countOfGood == 1){
+                        modelInventoryTable.removeRow(i);
+                    }
+                    else{
+                        modelInventoryTable.setValueAt(--countOfGood, i, 1);
+                    }
                 }
+            }
+        });
+
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (currentDemand != null){
+                    DataAccessor.demandList.remove(currentDemand);
+                }
+                Demand demand = new Demand();
+                DefaultTableModel modelInventoryTable = (DefaultTableModel)(goodsTable.getModel());
+                for(int i = 0; i < modelInventoryTable.getRowCount(); i++){
+                    String name = modelInventoryTable.getValueAt(i,0).toString();
+                    int count = Integer.valueOf(modelInventoryTable.getValueAt(i, 1).toString());
+                    //double price = Double.valueOf(modelInventoryTable.getValueAt(i,2).toString());
+                    demand.add(new Good(name, count));
+                }
+                demand.setCustomerName(textField1.getText());
+                demand.setCustomerTelephone(textField2.getText());
+                DataAccessor.demandList.add(demand);
             }
         });
 
