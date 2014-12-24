@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 /**
  * Created by Viktoria on 17.12.2014.
@@ -7,7 +8,11 @@ public class InventoryList extends ArrayList<Good>{
     InventoryList(){
         super();
     }
-    public getGood(){
-
+    public Good getGood(String name){
+        for(Good good:this){
+            if(good.getTitle().equalsIgnoreCase(name))
+                return good;
+        }
+        return null;
     }
 }

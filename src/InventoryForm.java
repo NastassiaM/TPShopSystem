@@ -53,22 +53,25 @@ public class InventoryForm extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 DefaultTableModel modelInventoryTable = (DefaultTableModel)(inventoryTable.getModel());
                 boolean hasInInventList = false;
-                int rowIndex = -1,
+                String nameOfGood = catalogList.getSelectedValue();
+                int rowIndex = (modelInventoryTable.getRowCount() > 0? modelInventoryTable.getRowCount(): 0),
                     countOfGood = 0;
                 for(int i = 0; i < modelInventoryTable.getRowCount(); i++){
-                    if(modelInventoryTable.getValueAt(i,0).equals(catalogList.getSelectedValue())){
+                    if(modelInventoryTable.getValueAt(i,0).equals(nameOfGood)){
                         hasInInventList = true;
                         rowIndex = i;
                         Object goodOfIL = modelInventoryTable.getValueAt(i,1);
                         countOfGood = Integer.parseInt(goodOfIL.toString());
                     }
                 }
-                if(!hasInInventList)
-                    modelInventoryTable.addRow(new String[]{catalogList.getSelectedValue(), "1"});
-                else
-                    modelInventoryTable.setValueAt(countOfGood+1, rowIndex, 1);
+                if(!hasInInventList) {
+                    modelInventoryTable.addRow(new String[]{nameOfGood, "1"});
+                }
+                else {
+                    modelInventoryTable.setValueAt(countOfGood + 1, rowIndex, 1);
+                }
 
-                modelInventoryTable.setValueAt(DataAccessor.inventoryList.indexOf(""), rowIndex, 2);
+                modelInventoryTable.setValueAt(DataAccessor.catalogOfGoods.getGood(nameOfGood).getPrice()*(countOfGood+1), rowIndex, 2);
 
                 int i = modelInventoryTable.getRowCount()-1;
                 if(i >= 0)

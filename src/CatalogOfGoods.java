@@ -45,4 +45,11 @@ public class CatalogOfGoods extends ArrayList<Good> {
         }
     }
 
+    public Good getGood(String name){
+        for(Good good:this){
+            if(good.getTitle().equalsIgnoreCase(name))
+                return good;
+        }
+        return null;
+    }
 }
