@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 /**
@@ -10,10 +11,8 @@ public class OrdersForm extends JFrame {
     private JButton buttonCreateOrder;
     private JTable table2;
     private JButton buttonEditOrder;
-    private JButton exitButton;
     private JPanel Test;
     private JPanel qwe;
-    private JButton exitButtonOrders;
 
     OrderController orderController;
 
@@ -29,6 +28,8 @@ public class OrdersForm extends JFrame {
 
        orderController = orderControl;
 
+       initLists();
+
        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        pack();
        setBounds(100, 50, 500, 650);
@@ -38,4 +39,16 @@ public class OrdersForm extends JFrame {
         setVisible(true);
     }
 
+    public void initLists(){
+        //tableDemands.setModel(new DefaultTableModel());
+        DefaultTableModel demandTableModel = (DefaultTableModel)(tableDemands.getModel());
+        for(Demand demand:DataAccessor.demandList){
+            demandTableModel.addRow(new String[]{demand.getId(), String.valueOf(demand.isAvailable)});
+        }
+    }
+
+    private void createUIComponents() {
+        String[][] emptyData = new String[0][3];
+        tableDemands = new JTable(new DefaultTableModel(emptyData ,new String[]{"Column1", "Column2"}));
+    }
 }

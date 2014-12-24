@@ -22,7 +22,7 @@ public class Order extends Demand{
 
     @Override
     public String toString() {
-        return totalPrice + " " + super.toString();
+        return totalPrice + ":" + super.toString();
         /*StringBuffer stringBuffer = new StringBuffer(result);
         for (Good good:this) {
             stringBuffer.append("<");
@@ -37,7 +37,7 @@ public class Order extends Demand{
     }
 
     public Order fromString(String string){
-        StringTokenizer stringTokenizer = new StringTokenizer(string);
+        StringTokenizer stringTokenizer = new StringTokenizer(string, "<:>");
         Double price = Double.valueOf(stringTokenizer.nextToken());
 
         id = stringTokenizer.nextToken();
@@ -45,9 +45,9 @@ public class Order extends Demand{
         customerTelephone = stringTokenizer.nextToken();
 
         while (stringTokenizer.hasMoreTokens()){
-            String strTitle = stringTokenizer.nextToken("<:>");
-            String strPrice = stringTokenizer.nextToken("<:>");
-            String strCount = stringTokenizer.nextToken("<:>");
+            String strTitle = stringTokenizer.nextToken();
+            String strPrice = stringTokenizer.nextToken();
+            String strCount = stringTokenizer.nextToken();
             this.add(new Good(strTitle, Integer.valueOf(strCount), Double.valueOf(strPrice)));
         }
 
