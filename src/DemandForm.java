@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
  * Created by Viktoria on 22.12.2014.
  */
 public class DemandForm extends JFrame{
-    private RequestController requestController;
+    private DemandController demandController;
     private JTextField textField1;
     private JTextField textField2;
     private JButton saveButton;
@@ -24,12 +24,12 @@ public class DemandForm extends JFrame{
     private JPanel listOfRequestTab;
     private CatalogOfGoods catalogOfGoods;
 
-    public DemandForm(RequestController requestCtrl) {
+    public DemandForm(DemandController requestCtrl) {
         setContentPane(mainPanel);
         catalogOfGoods = new CatalogOfGoods();
         initLists();
 
-        requestController = requestCtrl;
+        demandController = requestCtrl;
         initListeners();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -93,6 +93,7 @@ public class DemandForm extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 requestsList.getSelectedValue();
+
             }
         });
     }

@@ -125,7 +125,7 @@ public class DataAccessor
         return inventoryList.contains(good);
     }
 
-    public boolean saveInventoryList(InventoryList invList){
+    public static boolean saveInventoryList(InventoryList invList){
         inventoryList = invList;
         boolean result = inventoryList.writeToFile();
         /*try {

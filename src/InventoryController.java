@@ -6,13 +6,11 @@
 public class InventoryController {
 	public InventoryForm inventoryForm;
 	public PrinterAccessor printerAccessor;
-	public DataAccessor dataAccessor;
 	public InventoryList inventoryList;
     Main mainController;
 
     public InventoryController() {
         //mainController = main;
-		dataAccessor = new DataAccessor();
 		inventoryList = DataAccessor.inventoryList;
         inventoryForm = new InventoryForm(this);
     }
@@ -38,7 +36,7 @@ public class InventoryController {
 
 
 	public boolean saveInventoryList(InventoryList invList){
-        return dataAccessor.saveInventoryList(invList);
+        return DataAccessor.saveInventoryList(invList);
 	}
 
 }

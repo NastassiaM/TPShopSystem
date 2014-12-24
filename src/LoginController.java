@@ -1,6 +1,4 @@
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Created by NotePad on 14.12.2014.
@@ -9,7 +7,7 @@ public class LoginController {
     DataAccessor dataAccessor;
     OrderController orderController;
     InventoryController inventoryController;
-    RequestController requestController;
+    DemandController demandController;
 
     LoginForm loginForm;
 
@@ -17,7 +15,7 @@ public class LoginController {
         dataAccessor = new DataAccessor();
         orderController = new OrderController();
         inventoryController = new InventoryController();
-        requestController = new RequestController();
+        demandController = new DemandController();
     }
 
     public void doLogin(String name, String password){
@@ -25,7 +23,7 @@ public class LoginController {
         if (dataAccessor.checkUser(user)){
             switch (user.getPosition()) {
                 case CLERK:
-                    requestController.requestForCreate();
+                    demandController.requestForCreate();
                     break;
                 case SELLER:
                     orderController.requestForCreate();

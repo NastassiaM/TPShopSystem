@@ -1,10 +1,10 @@
 /**
  * Created by Viktoria on 22.12.2014.
  */
-public class RequestController {
+public class DemandController {
     private DemandForm demandForm;
 
-    public RequestController() {
+    public DemandController() {
         demandForm = new DemandForm(this);
     }
 
@@ -14,5 +14,9 @@ public class RequestController {
     public void requestForCreate(){
         //catalog()
         demandForm.showForm();
+    }
+
+    public Demand getDemandByID(String id){
+        return DataAccessor.demandList.getDemand(id);
     }
 }

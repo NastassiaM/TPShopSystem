@@ -24,6 +24,14 @@ public class DemandList extends ArrayList<Demand> {
         }
     }
 
+    public Demand getDemand(String id){
+        for(Demand demand:this){
+            if(demand.getId().equalsIgnoreCase(id))
+                return demand;
+        }
+        return null;
+    }
+
     public void writeToFile(){
         try {
             FileWriter fw = new FileWriter("demandList.txt");
