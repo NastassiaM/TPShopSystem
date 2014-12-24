@@ -19,6 +19,12 @@ public class Good {
         this.count = 0;
     }
 
+    public Good(String title, int count) {
+        this.title = title;
+        this.count = count;
+        this.price = 0.0;
+    }
+
     public Good(String title, int count, double price) {
         this.title = title;
         this.price = price;

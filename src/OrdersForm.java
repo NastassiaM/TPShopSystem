@@ -6,7 +6,7 @@ import java.awt.*;
  */
 public class OrdersForm extends JFrame {
     private JTabbedPane tabbedPane1;
-    private JTable table1;
+    private JTable tableDemands;
     private JButton buttonCreateOrder;
     private JTable table2;
     private JButton buttonEditOrder;

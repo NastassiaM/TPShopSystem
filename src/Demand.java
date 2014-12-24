@@ -81,7 +81,7 @@ public class Demand extends ArrayList<Good> {
 
     @Override
     public String toString() {
-        String result = id + " " + customerName + " " + customerTelephone;
+        String result = id + ":" + customerName + ":" + customerTelephone;
         StringBuffer stringBuffer = new StringBuffer(result);
         for (Good good:this) {
             stringBuffer.append("<");
@@ -97,15 +97,15 @@ public class Demand extends ArrayList<Good> {
     }
 
     public Demand fromString(String string){
-        StringTokenizer stringTokenizer = new StringTokenizer(string);
+        StringTokenizer stringTokenizer = new StringTokenizer(string, "<:>");
         id = stringTokenizer.nextToken();
         customerName = stringTokenizer.nextToken();
         customerTelephone = stringTokenizer.nextToken();
 
         while (stringTokenizer.hasMoreTokens()){
-            String strTitle = stringTokenizer.nextToken("<:>");
-            String strPrice = stringTokenizer.nextToken("<:>");
-            String strCount = stringTokenizer.nextToken("<:>");
+            String strTitle = stringTokenizer.nextToken();
+            String strPrice = stringTokenizer.nextToken();
+            String strCount = stringTokenizer.nextToken();
             this.add(new Good(strTitle,  Integer.valueOf(strCount), Double.valueOf(strPrice)));
         }
 

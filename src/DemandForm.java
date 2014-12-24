@@ -114,7 +114,7 @@ public class DemandForm extends JFrame{
                     String name = modelInventoryTable.getValueAt(i,0).toString();
                     int count = Integer.valueOf(modelInventoryTable.getValueAt(i, 1).toString());
                     //double price = Double.valueOf(modelInventoryTable.getValueAt(i,2).toString());
-                    demand.add(new Good(name, count));
+                    demand.add(new Good(name, count, 0.0));
                 }
                 //demand.setCustomerName(textField1.getText());
                 //demand.setCustomerTelephone(textField2.getText());

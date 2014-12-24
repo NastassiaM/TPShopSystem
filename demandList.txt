@@ -1,3 +1,5 @@
-sd1 sd 123<Table<< "Sunflower" :1.0:0>
-fafas1 fafas 111<Door< "Never mind" :2.0:0><Door "Close me" :1.0:0>
-adaf1 adaf 1234<Table "Sunflower" :1.0:0><Wardrobe "Genius" :1.0:0>
+sd1:sd:123<Table "Sunflower" :0.0:1>
+fafas1:fafas:111<Door "Never mind" :0.0:3><Door "Close me" :1.0:3>
+adaf1:adaf:1234<Table "Sunflower" :0.0:2><Wardrobe "Genius" :1.0:2>
+dawdad4:dawdad:2222<Wardrobe "Genius" :0.0:1>
+eee5:eee:333<Table "Sunflower" :0.0:5>
