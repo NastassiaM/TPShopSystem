@@ -9,7 +9,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class InventoryForm extends JFrame{
     private JList<String> catalogList;
-    CatalogOfGoods catalogOfGoods;
     private JButton rightArrow;
     private JButton leftArrow;
     private JButton saveButton;
@@ -21,7 +20,7 @@ public class InventoryForm extends JFrame{
 
     public InventoryForm(InventoryController inventoryCtrl) {
         setContentPane(mainPanel);
-        catalogOfGoods = new CatalogOfGoods();
+        DataAccessor.catalogOfGoods = new CatalogOfGoods();
         initLists();
 
         inventoryController = inventoryCtrl;
@@ -37,7 +36,7 @@ public class InventoryForm extends JFrame{
     private void initLists() {
         catalogList.setModel(new DefaultListModel<String>());
         DefaultListModel<String> catalogListModel = (DefaultListModel<String>)(catalogList.getModel());
-        for(Good good: catalogOfGoods){
+        for(Good good: DataAccessor.catalogOfGoods){
             catalogListModel.addElement(good.getTitle());
         }
         catalogList.setSelectedIndex(0);

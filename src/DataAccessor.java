@@ -17,6 +17,7 @@ public class DataAccessor
     static DemandList demandList;
     static OrderList orderList;
     static InventoryList inventoryList;
+    static CatalogOfGoods catalogOfGoods;
 
     public DataAccessor()
     {
@@ -29,6 +30,8 @@ public class DataAccessor
 
         inventoryList = new InventoryList();
         initInventoryList();
+
+        catalogOfGoods = new CatalogOfGoods();
     }
 
     public  void initUsers(){
@@ -121,18 +124,17 @@ public class DataAccessor
 
     public void saveInventoryList(InventoryList invList){
         inventoryList = invList;
-    }
 
-    @Override
-    protected void finalize() throws Throwable {
         try {
             FileWriter fw = new FileWriter("inventory.txt");
             for (Good good:inventoryList){
                 fw.write(good.toString() + '\n');
             }
             fw.close();
-        } catch (IOException e) {}
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog (null, "Error writing in file", "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
 
-        super.finalize();
+        catalogOfGoods.updateCatalog(invList);
     }
 }

@@ -1,1 +1,2 @@
-Wardrobe "Genius" 50.0 2
+Wardrobe "Genius"  2.0 0
+Table "Sunflower"  1.0 0

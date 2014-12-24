@@ -35,13 +35,14 @@ public class CatalogOfGoods extends ArrayList<Good> {
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(null, "File not found", "Error", JOptionPane.OK_OPTION);
         }
-
-        /*String[] strArr = {"PocketBook 614", "PocketBook 622", "PocketBook 624", "Kindle", "Nook", "Brown Sweater"};
-        for(int i = 0; i < strArr.length; i++){
-            add(strArr[i]);*/
-        //}
     }
 
-	public void finalize() throws Throwable {}
+	public void updateCatalog(InventoryList inventoryList){
+        for (Good good: inventoryList)
+        {
+            int i = this.indexOf(good);
+            this.get(i).setPrice(good.getPrice());
+        }
+    }
 
 }
