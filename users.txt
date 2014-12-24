@@ -1,4 +1,7 @@
 Mike qwerty CLERK
 Paul 123456 SELLER
 Travis qwerty123456 manager
+clerk clerk CLERK
+seller seller SELLER
+manager manager MANAGER
 Admin Admin MANAGER

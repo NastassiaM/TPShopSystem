@@ -27,6 +27,8 @@ public class InventoryForm extends JFrame{
         inventoryController = inventoryCtrl;
         initListeners();
 
+        initInventoryTable();
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setBounds(100, 50, 500, 650);
@@ -41,6 +43,13 @@ public class InventoryForm extends JFrame{
         catalogList.setSelectedIndex(0);
     }
 
+    private void initInventoryTable(){
+        DefaultTableModel modelInventoryTable = (DefaultTableModel)(inventoryTable.getModel());
+        for (Good good:inventoryController.dataAccessor.inventoryList){
+            modelInventoryTable.addRow(new String[]{good.getTitle(), String.valueOf(good.getCount())});
+        }
+    }
+
     private void initListeners() {
         rightArrow.addActionListener(new ActionListener() {
             @Override
@@ -48,7 +57,7 @@ public class InventoryForm extends JFrame{
                 DefaultTableModel modelInventoryTable = (DefaultTableModel)(inventoryTable.getModel());
                 boolean hasInInventList = false;
                 int rowIndex = -1,
-                    countOfGood = -1;
+                    countOfGood = 0;
                 for(int i = 0; i < modelInventoryTable.getRowCount(); i++){
                     if(modelInventoryTable.getValueAt(i,0).equals(catalogList.getSelectedValue())){
                         hasInInventList = true;
@@ -58,7 +67,7 @@ public class InventoryForm extends JFrame{
                     }
                 }
                 if(!hasInInventList)
-                    modelInventoryTable.addRow(new String[]{catalogList.getSelectedValue(), "0"});
+                    modelInventoryTable.addRow(new String[]{catalogList.getSelectedValue(), "1"});
                 else
                     modelInventoryTable.setValueAt(countOfGood+1, rowIndex, 1);
 
@@ -74,7 +83,15 @@ public class InventoryForm extends JFrame{
                 DefaultTableModel modelInventoryTable = (DefaultTableModel) (inventoryTable.getModel());
                 int i = inventoryTable.getSelectedRow();
                 if (i >= 0){
-                    modelInventoryTable.removeRow(i);
+                    //modelInventoryTable.removeRow(i);
+                    Object goodOfIL = modelInventoryTable.getValueAt(i,1);
+                    int countOfGood = Integer.parseInt(goodOfIL.toString());
+                    if (countOfGood == 1){
+                        modelInventoryTable.removeRow(i);
+                    }
+                    else{
+                        modelInventoryTable.setValueAt(--countOfGood, i, 1);
+                    }
                 }
             }
         });
@@ -82,7 +99,14 @@ public class InventoryForm extends JFrame{
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                InventoryList list = new InventoryList();
+                DefaultTableModel modelInventoryTable = (DefaultTableModel)(inventoryTable.getModel());
+                for(int i = 0; i < modelInventoryTable.getRowCount(); i++){
+                    String name = modelInventoryTable.getValueAt(i,0).toString();
+                    int count = Integer.valueOf(modelInventoryTable.getValueAt(i,1).toString());
+                    list.add(new Good(name, count));
+                }
+                inventoryController.dataAccessor.saveInventoryList(list);
             }
         });
     }

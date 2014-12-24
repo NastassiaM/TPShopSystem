@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -26,6 +28,7 @@ public class DataAccessor
         orderList = new OrderList();
 
         inventoryList = new InventoryList();
+        initInventoryList();
     }
 
     public  void initUsers(){
@@ -40,6 +43,31 @@ public class DataAccessor
                 String position = strtok.nextToken();
 
                 users.add(new User(userName, password, position));
+            }
+            sc.close();
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "File not found", "Error", JOptionPane.OK_OPTION);
+        }
+    }
+
+    public void initInventoryList(){
+        try {
+            Scanner sc = new Scanner (new File("inventory.txt"));
+            while(sc.hasNextLine()){
+                String str = sc.nextLine();
+                StringTokenizer strtok = new StringTokenizer(str);
+                int k = strtok.countTokens();
+                StringBuffer stringBuffer = new StringBuffer();
+                for (int i = 0; i < (k - 2); i ++)
+                {
+                    stringBuffer.append(strtok.nextToken());
+                    stringBuffer.append(' ');
+                }
+                String name = stringBuffer.toString();
+                Double price = Double.valueOf(strtok.nextToken());
+                Integer count = Integer.valueOf(strtok.nextToken());
+
+                inventoryList.add(new Good(name, price, count));
             }
             sc.close();
         } catch (FileNotFoundException e) {
@@ -87,8 +115,24 @@ public class DataAccessor
         }
     }
 
-    public  boolean inventoryListContains(Good good)
-    {
+    public  boolean inventoryListContains(Good good) {
         return inventoryList.contains(good);
+    }
+
+    public void saveInventoryList(InventoryList invList){
+        inventoryList = invList;
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        try {
+            FileWriter fw = new FileWriter("inventory.txt");
+            for (Good good:inventoryList){
+                fw.write(good.toString() + '\n');
+            }
+            fw.close();
+        } catch (IOException e) {}
+
+        super.finalize();
     }
 }

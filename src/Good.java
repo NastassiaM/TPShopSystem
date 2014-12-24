@@ -19,6 +19,12 @@ public class Good {
         this.count = 0;
     }
 
+    public Good(String title, double price, int count) {
+        this.title = title;
+        this.price = price;
+        this.count = count;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -47,5 +53,10 @@ public class Good {
     public boolean equals(Object obj) {
         Good anotherGood = (Good)obj;
         return ((title.equalsIgnoreCase(anotherGood.getTitle())) && (price == anotherGood.price));
+    }
+
+    @Override
+    public String toString() {
+        return title + " " + price + " " + count;
     }
 }
