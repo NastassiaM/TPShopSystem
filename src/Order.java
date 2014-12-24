@@ -48,7 +48,7 @@ public class Order extends Demand{
             String strTitle = stringTokenizer.nextToken("<:>");
             String strPrice = stringTokenizer.nextToken("<:>");
             String strCount = stringTokenizer.nextToken("<:>");
-            this.add(new Good(strTitle, Double.valueOf(strPrice), Integer.valueOf(strCount)));
+            this.add(new Good(strTitle, Integer.valueOf(strCount), Double.valueOf(strPrice)));
         }
 
         return this;

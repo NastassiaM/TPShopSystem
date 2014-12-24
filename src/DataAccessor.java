@@ -25,11 +25,14 @@ public class DataAccessor
         initUsers();
 
         demandList = new DemandList();
+        demandList.initFromFile();
 
         orderList = new OrderList();
+        orderList.initFromFile();
 
         inventoryList = new InventoryList();
-        initInventoryList();
+        inventoryList.initFromFile();
+        //initInventoryList();
 
         catalogOfGoods = new CatalogOfGoods();
     }
@@ -53,7 +56,7 @@ public class DataAccessor
         }
     }
 
-    public void initInventoryList(){
+/*    public void initInventoryList(){
         try {
             Scanner sc = new Scanner (new File("inventory.txt"));
             while(sc.hasNextLine()){
@@ -76,7 +79,7 @@ public class DataAccessor
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(null, "File not found", "Error", JOptionPane.OK_OPTION);
         }
-    }
+    }*/
 
     public boolean checkUser(User user){
         if (users.contains(user))
@@ -124,8 +127,8 @@ public class DataAccessor
 
     public boolean saveInventoryList(InventoryList invList){
         inventoryList = invList;
-
-        try {
+        boolean result = inventoryList.writeToFile();
+        /*try {
             FileWriter fw = new FileWriter("inventory.txt");
             for (Good good:inventoryList){
                 fw.write(good.toString() + '\n');
@@ -135,8 +138,9 @@ public class DataAccessor
             //JOptionPane.showMessageDialog (null, "Error writing in file", "Error", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
-
+*/
         catalogOfGoods.updateCatalog(invList);
-        return true;
+        //return true;
+        return result;
     }
 }

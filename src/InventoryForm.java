@@ -26,6 +26,8 @@ public class InventoryForm extends JFrame{
         inventoryController = inventoryCtrl;
         initListeners();
 
+        initInventoryTable();
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setBounds(100, 50, 500, 650);
@@ -42,8 +44,8 @@ public class InventoryForm extends JFrame{
 
     private void initInventoryTable(){
         DefaultTableModel modelInventoryTable = (DefaultTableModel)(inventoryTable.getModel());
-        for (Good good:inventoryController.dataAccessor.inventoryList){
-            modelInventoryTable.addRow(new String[]{good.getTitle(), String.valueOf(good.getCount())});
+        for (Good good:DataAccessor.inventoryList){
+            modelInventoryTable.addRow(new String[]{good.getTitle(), String.valueOf(good.getCount()), String.valueOf(good.getPrice())});
         }
     }
 
@@ -105,7 +107,7 @@ public class InventoryForm extends JFrame{
                 DefaultTableModel modelInventoryTable = (DefaultTableModel)(inventoryTable.getModel());
                 for(int i = 0; i < modelInventoryTable.getRowCount(); i++){
                     String name = modelInventoryTable.getValueAt(i,0).toString();
-                    int count = Integer.valueOf(modelInventoryTable.getValueAt(i,1).toString());
+                    int count = Integer.valueOf(modelInventoryTable.getValueAt(i, 1).toString());
                     double price = Double.valueOf(modelInventoryTable.getValueAt(i,2).toString());
                     list.add(new Good(name, count, price));
                 }
