@@ -26,7 +26,7 @@ public class DemandForm extends JFrame{
 
     private Demand currentDemand = null;
 
-    public DemandForm(RequestController requestCtrl) {
+    public DemandForm(DemandController requestCtrl) {
         setContentPane(mainPanel);
         catalogOfGoods = new CatalogOfGoods();
         initLists();
