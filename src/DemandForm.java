@@ -43,13 +43,16 @@ public class DemandForm extends JFrame{
     private void initLists() {
         catalogList.setModel(new DefaultListModel<String>());
         DefaultListModel<String> catalogListModel = (DefaultListModel<String>)(catalogList.getModel());
-
-        requestsList.setModel(new DefaultListModel<String>());
-        DefaultListModel<String> requestsListModel = (DefaultListModel<String>)(requestsList.getModel());
         for(Good good: catalogOfGoods){
             catalogListModel.addElement(good.getTitle());
         }
         catalogList.setSelectedIndex(0);
+
+        requestsList.setModel(new DefaultListModel<String>());
+        DefaultListModel<String> requestsListModel = (DefaultListModel<String>)(requestsList.getModel());
+        for(Demand demand:DataAccessor.demandList){
+            requestsListModel.addElement(demand.getId());
+        }
     }
 
 
@@ -105,7 +108,7 @@ public class DemandForm extends JFrame{
                 if (currentDemand != null){
                     DataAccessor.demandList.remove(currentDemand);
                 }
-                Demand demand = new Demand();
+                Demand demand = new Demand(textField1.getText(), textField2.getText());
                 DefaultTableModel modelInventoryTable = (DefaultTableModel)(goodsTable.getModel());
                 for(int i = 0; i < modelInventoryTable.getRowCount(); i++){
                     String name = modelInventoryTable.getValueAt(i,0).toString();
@@ -113,9 +116,19 @@ public class DemandForm extends JFrame{
                     //double price = Double.valueOf(modelInventoryTable.getValueAt(i,2).toString());
                     demand.add(new Good(name, count));
                 }
-                demand.setCustomerName(textField1.getText());
-                demand.setCustomerTelephone(textField2.getText());
+                //demand.setCustomerName(textField1.getText());
+                //demand.setCustomerTelephone(textField2.getText());
                 DataAccessor.demandList.add(demand);
+                DataAccessor.demandList.writeToFile();
+
+                DefaultListModel<String> requestsListModel = (DefaultListModel<String>)(requestsList.getModel());
+                requestsListModel.addElement(demand.getId());
+
+                textField1.setText("");
+                textField2.setText("");
+                for (int i = modelInventoryTable.getRowCount() - 1; i >= 0; i --){
+                    modelInventoryTable.removeRow(i);
+                }
             }
         });
 

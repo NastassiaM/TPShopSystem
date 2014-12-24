@@ -45,14 +45,17 @@ public class DemandList extends ArrayList<Demand> {
     }
 
     public void initFromFile(){
+        int k = 0;
         try {
             Scanner sc = new Scanner (new File("demandList.txt"));
             while(sc.hasNextLine()){
                 String str = sc.nextLine();
                 Demand demand = new Demand();
                 this.add(demand.fromString(str));
+                k++;
             }
             sc.close();
+            Demand.count = k;
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(null, "File not found", "Error", JOptionPane.OK_OPTION);
         }

@@ -1,0 +1,3 @@
+sd1 sd 123<Table<< "Sunflower" :1.0:0>
+fafas1 fafas 111<Door< "Never mind" :2.0:0><Door "Close me" :1.0:0>
+adaf1 adaf 1234<Table "Sunflower" :1.0:0><Wardrobe "Genius" :1.0:0>

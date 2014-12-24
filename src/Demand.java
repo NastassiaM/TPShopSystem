@@ -21,19 +21,19 @@ public class Demand extends ArrayList<Good> {
         isAvailable = false;
         id = "";
 
-        dataAccessor = new DataAccessor();
+       // dataAccessor = new DataAccessor();
     }
 
     public Demand(String name, String phone) {
         super();
 
         customerName = name;
-        customerTelephone =phone;
+        customerTelephone = phone;
         isAvailable = false;
 
-        id = name + " " + (++count);
+        id = name + (++count);
 
-        dataAccessor = new DataAccessor();
+        //dataAccessor = new DataAccessor();
     }
 
     public  void elementWasAddedToInventory(Good item){
@@ -81,7 +81,7 @@ public class Demand extends ArrayList<Good> {
 
     @Override
     public String toString() {
-        String result = id + " " + customerName + " " + customerTelephone + " ";
+        String result = id + " " + customerName + " " + customerTelephone;
         StringBuffer stringBuffer = new StringBuffer(result);
         for (Good good:this) {
             stringBuffer.append("<");
